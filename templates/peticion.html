@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+{%extends 'layout.html'%}
+{%block content%}
+
+<div>
+    <h1 style="text-align: center;">Derecho de Petición</h1>
+    <h2 style="text-align: center;">Llena todos los campos y al finalizar da clic en "Crear Dereho de Petición"</h2>
+    </br>
+    <div class="container " >
+       
+        </div>   
+        
+</div>
+
+</br>
+   
+<div class="container">
+    <form action="/form_peticion" name="datos" id="datos" method="POST" class="text " >
+        
+        <div class="row p-1 bg-light border border-dark rounded">
+            <p class="text-center"><strong >Información sobre el Derecho de petición</strong></p>
+    
+                    <div class="form-group col-sm ">
+                    </br>
+                    <input type="date" class="form-control border border-secondary " name = 'fecha_peticion' required>
+                    </br>
+                    </div>
+                    <div class="form-group col-sm ">
+                    </br>
+                    <label for="fecha_hechos" >Selecciona la fecha de la petición</label>
+                    </br>
+                    </div>
+                <div>
+                <input type="text" class="form-control border border-secondary " placeholder="Escribe el asunto" name = 'asunto_peticion' required>
+                <br>
+                <input type="text" class="form-control border border-secondary " placeholder="Escribe la ciudad" name = 'ciudad_peticion' required>
+                </br>
+                </div>
+            </div>
+
+    <div class="row">
+        <div class="form-group col-sm "><div class="p-1 bg-light border border-dark rounded">
+        <p class="text-center"><strong >Peticionario</strong></p>
+
+        
+        </br>
+
+        <input type="text" class="form-control border border-secondary " placeholder="Escribe los nombre del peticionario" name = 'nom_peticionario' required>
+    </br>
+    <div class="input-group mb-3">
+         <div class="input-group-prepend">
+            <select id="genstate" class="form-control border-secondary" name = 'id_peticionario' required>
+                 <option value='' disabled selected hidden>🔽 Tipo Id </option>
+                <option value='C.C.'>C.C.</option>
+                <option value='C.E.'>C.E.</option>
+                <option value='T.I.'>T.I.</option>
+            </select>
+        </div>
+        <input type="text" class="form-control border-secondary" placeholder="Escribe tu número de identificación " name = 'ced_peticionario' required>
+        <input type="text" class="form-control border border-secondary " placeholder="Escribe la ciudad de expedición" name = 'id_expedicion' required>
+    </div> 
+    
+    <br/>
+    <select id="genstate" class="form-control border-secondary " name = 'gen_peticionario'>
+        <option value='e' disabled selected hidden> 🔽 ¿Cuál es el sexo biológico del peticionario?</option>
+        <option value='m'>Hombre</option>
+        <option value='f'>Mujer</option>
+    </select>
+    </br>
+    <input type="email" class="form-control border border-secondary" placeholder="Escribe el correo electrónico del peticionario" name = 'email_peticionario' required>
+    </br>
+    <input type="text" class="form-control border border-secondary" placeholder="Escribe la dirección física del peticionario" name = 'direccion_peticionario' required>
+    </br>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+           <select id="calidad" class="form-control border-secondary" name = 'id_calidad' required>
+               <option value='' disabled selected hidden>🔽 ¿En qué calidad actuas? </option>
+               <option value='Ciudadano'>Ciudadano</option>
+               <option value='Interesado'>Interesado</option>
+               <option value='Representación de otra persona'>Representación de otra persona</option>
+           </select>
+       </div>
+       <input type="Rp" class="form-control border border-secondary" placeholder="Escribe el nombre y número de documento de la persona representada" name = 'eepresentada' required>
+   </div>
+</div>
+</div>
+
+ <!--===================================PETICIONADO===============================================================================================-->
+
+<div class="col-sm ">
+    <div class="p-1 bg-light border border-dark rounded">
+    <p class="text-center"><strong >Peticionado</strong></p>
+    <input type="text" class="form-control border border-secondary" placeholder="¿A quién va dirigido el derecho de petición" name = 'dirigido' required></br>
+
+    <input type="text" class="form-control border border-secondary" placeholder="¿Cuál es la dirección física de la persona a quien va dirigido el Derecho de petición?" name = 'direccion_peticionario' required></br>
+
+    <input type="email" class="form-control border border-secondary" placeholder="Escribe el correo electrónico del peticionado" name = 'email_peticionado' required>
+    </br>
+    </div>
+</div>
+</div>
+<!--===================================hechos y peticiones===============================================================================================-->
+
+    
+
+  <img src="{{url_for('static', filename='linea.png')}}" class="img-fluid" alt="Responsive image">
+  <div class=" container form-control border border-secondary">
+    </br>
+    <input type="text" class="form-control border border-secondary" placeholder="Escribe los hechos de tú petición" name = 'hechosAdd' required>
+    </br>  
+      <div class="table-responsive">
+        <table class="table table-borderless" id="dynamic_field">
+            <colgroup>
+                <col span="1" style="width: 70%;">
+                <col span="1" style="width: 30%;">
+            </colgroup>
+            <tbody>
+               <tr>
+                <td><button type="button" name="add" id="add" class="btn btn-success">Añadir peticiones</button></td>
+                <td><p style="text-align: justify;">Agrega las peticiones que quieres realizar</td>
+               </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<br>
+<div class=" row">
+    <div class="d-grid gap-3 col-2 mx-auto">
+      <div class="form-group col-sm">
+      <button class="btn btn-success S">Crear Derecho de petición</button>
+      </div>
+  </div>
+</div>
+
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script>
+       $(document).ready(function(){
+            var i=1;
+            $('#add').click(function(){
+                 i++;
+                 $('#dynamic_field').append('<tr id="row'+i+'"><td><textarea name="peticiones" form="datos" placeholder="Agrega las peticiones que tengas" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            });
+            $(document).on('click', '.btn_remove', function(){
+                 var button_id = $(this).attr("id");
+                 $('#row'+button_id+'').remove();
+            });
+            $('#submit').click(function(){
+                 $.ajax({
+                      url:"name.php",
+                      method:"POST",
+                      data:$('#add_name').serialize(),
+                      success:function(data)
+                      {
+                           alert(data);
+                           $('#add_name')[0].reset();
+                      }
+                 });
+            });
+       });
+</script>
+
+
+
+
+
+
+  
+{%endblock%}

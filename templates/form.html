@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+
+{%extends 'layout.html'%} <!--Para los cambios en el nav bar y etc-->
+{%block content%}
+<body>
+<div class="container">
+  <h1>Gracias, este es el cuerpo del documento</h1>
+
+  <h2>Si todo está en orden, descarga <a href="{{url_for( 'download_file',pdf_name='habeas_'+nom_solicitante[:4]+ced_solicitante[:-3]+'.pdf' ) }}">aquí</a> tu Habeas Corpus en PDF</h2>
+  <h2>Descarga <a href="{{url_for( 'download_file',pdf_name='instructivo_habeas.pdf' ) }}">aquí</a> el instructivo para llevarlo a la justicia</h2>
+
+</div>
+<div class="container">
+  <p style="text-align: justify;"><strong>Se&ntilde;or</strong><br /><strong>Juez competente</strong><br />{{ciudad}}<br />{{fecha}}<br /><br />Yo, {{nom_solicitante}} en mi condici&oacute;n de {{condi_solici}}, acudo ante usted, se&ntilde;or juez a fin de solicitarle se sirva dar tr&aacute;mite a la petici&oacute;n de h&aacute;beas corpus en favor de {{nom_afectado}}, identificado con {{id_afectado}} No. {{ced_afectado}}, con fundamento en lo siguiente:</p>
+  <p style="text-align: justify;"><strong>HECHOS</strong></p>
+  <p style="text-align: justify;">{{nom_afectado}} fue aprehendid{{gen_afectado}} por la {{nom_autoridad}} el pasado {{fecha_hechos}} por orden de {{sujeto_ordeno}}. Desde entonces, hasta la fecha han transcurrido {{num_dias}} d&iacute;as sin que haya sido indagada o resuelta su situaci&oacute;n jur&iacute;dica.<br />{{nom_afectado}} se encuentra recluid{{gen_afectado}} en {{sitio}}, desde el d&iacute;a {{fecha_hechos}} y el funcionario que orden&oacute; su aprehensi&oacute;n es {{sujeto_ordeno}} {{cargo_txt}}</p>
+  <p style="text-align: justify;">{{hechos}}</p>
+  <p style="text-align: justify;"><strong>JURAMENTO</strong></p>
+  <p style="text-align: justify;">Bajo la gravedad del juramento, manifiesto que ning&uacute;n otro funcionario conoce o ha decidido sobre esta acci&oacute;n.</p>
+  <p style="text-align: justify;"><strong>FUNDAMENTOS DE DERECHO</strong></p>
+  <p style="text-align: justify;">Esta petici&oacute;n est&aacute; fundamentada, se&ntilde;or juez, en los art&iacute;culos 30 y 85 de la Constituci&oacute;n Nacional referidos a la privaci&oacute;n ilegal de la libertad y a la aplicaci&oacute;n inmediata de los derechos consagrados en la Constituci&oacute;n Pol&iacute;tica. Sumado a ello, la Convenci&oacute;n Americana de Derechos Humanos establece en su art&iacute;culo 7 el derecho a la libertad personal, ante lo cual, nadie puede ser sometido a detenci&oacute;n arbitraria ni mucho menos puede ser privado de la libertad, salvo por causas y condiciones fijadas por la Constituci&oacute;n y la Ley. En el art&iacute;culo 8 de este instrumento tambi&eacute;n se plasma como garant&iacute;a judicial el derecho que tiene toda persona a ser o&iacute;da en un plazo razonable y por la autoridad competente para la determinaci&oacute;n de sus derechos.</p>
+  <p style="text-align: justify;">Bien se dispuso por parte de la Corte Constitucional en Sentencia C 187 de 2006 que:</p>
+  <p style="text-align: justify;">'Una interpretaci&oacute;n acorde con la Constituci&oacute;n Pol&iacute;tica supone que, despu&eacute;s de invocado el h&aacute;beas corpus, la autoridad judicial encargada de conocer, deber&aacute; verificar la existencia de las condiciones que conducen a ordenar que el peticionario sea puesto en libertad. Tales condiciones son: i) que la persona est&eacute; privada de la libertad, y ii) que la privaci&oacute;n de la libertad o la prolongaci&oacute;n de la misma se haya dado con violaci&oacute;n o quebrantamiento del orden constitucional y legal. Una vez demostrado que la privaci&oacute;n de la libertad personal o la prolongaci&oacute;n de la privaci&oacute;n de la libertad son el resultado de actos contrarios a lo dispuesto por el ordenamiento constitucional o legal, la autoridad judicial competente deber&aacute; ordenar que la persona sea puesta inmediatamente en libertad'<br /></p><strong>SOLICITUD</strong><br /></p>Efectuada la verificaci&oacute;n de la violaci&oacute;n de las garant&iacute;as constitucionales y legales, solicito a usted ordenar la libertad inmediata de {{nom_afectado}} y compulsar copias para que se inicien las investigaciones a que hubiere lugar.</p>
+  <p style="text-align: justify;"><br />Del se&ntilde;or juez,</p>
+  <p style="text-align: justify;">{{nom_solicitante}}<br />{{id_solicitante}} {{ced_solicitante}}<br />Direcci&oacute;n de notificaci&oacute;n electrónica: {{email_solicitante}}<br /> Dirección de noticación: {{direccion_solicitante}}<br />Tel&eacute;fono: {{num_solicitante}}</p>
+</div>
+
+</body>
+{%endblock%}
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>

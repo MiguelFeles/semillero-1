@@ -1,0 +1,153 @@
+<!doctype html>
+{%extends 'layout.html'%} <!--Para los cambios en el nav bar y etc-->
+{%block content%}
+<div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 img-fluid" alt="Responsive image" style="
+      background-image: url('{{url_for('static', filename='maat_bg.png')}}'); background-repeat: no-repeat;
+    "><p>
+<body>
+
+
+
+
+    <div class="container">
+      <h1 style="text-align: center;">Poder Automatizado</h1>
+      <h2 style="text-align: center;">Llena todos los campos y al finalizar da clic en "Crear Poder"</h2>
+    </div><br/><br/>
+    
+    <div class="container"><!--ESTE ES LA PRIMERA COLUMNA DEL PODER-->      
+      <div class="row">
+        <div class="form-group col-sm ">
+          <div class="p-1 bg-light border border-dark rounded">
+          <form action="/form_poder" name="datos" id="datos" method="POST" class="text " >
+              <p class="text-center"><label for="Tipo_proceso"><strong >¿Qué tipo de proceso es?</strong></label></p>
+              <input type="text" class="form-control border border-secondary " id="tipo_proceso" aria-describedby="text" placeholder="Escribe el tipo de proceso" name = 'tipo_proceso' required>
+          </br>
+          </br>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!--===================================COLUMNA PODERDANTE===============================================================================================-->
+        <div class="p-2 form-group col-sm "><div class="p-1 bg-light border border-dark rounded">
+          <form action="/form_poder" name="datos" id="datos" method="POST" class="text " >
+              <p class="text-center"><label for="exampleInputEmail1"><strong >Poderdante</strong></label></p>
+              <input type="text" class="form-control border border-secondary " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Escribe los Nombres y Apellido del poderdante" name = 'nom_poder' required>
+          </br>
+              <input type="email" class="form-control border border-secondary" placeholder="Escribe el correo electrónico del poderdante" name = 'email' required>
+              </br>
+              <select id="genstate" class="form-control border-secondary " name = 'gen_poder'>
+                  <option value='e' disabled selected hidden> 🔽 ¿Cuál es el sexo biológico del poderdante?</option>
+                  <option value='m'>Hombre</option>
+                  <option value='f'>Mujer</option>
+              </select>
+          </br>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <select id="genstate" class="form-control border-secondary" name = 'id_poder' required>
+                      <option value='' disabled selected hidden>🔽 Tipo Id </option>
+                      <option value='C.C.'>C.C.</option>
+                      <option value='C.E.'>C.E.</option>
+                      <option value='T.I.'>T.I.</option>
+                  </select>
+                  </div>
+                <input type="text" class="form-control border-secondary" placeholder="Escribe tu número de identificación " name = 'ced_poder' required>
+              </div>
+              <br/>
+               <br/>
+        </div></div>
+
+        <!--=================================================COLUMNA APODERADO=========================================================================-->
+        <div class="p-2 form-group col-sm "><div class="p-1 bg-light border border-dark rounded">
+          <form action="/form_poder" name="datos" id="datos" method="POST" class="text " >
+              <p class="text-center"><label for="exampleInputEmail1"><strong >Apoderado</strong></label></p>
+              <input type="text" class="form-control border border-secondary " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Escribe los Nombres y Apellido del apoderado" name = 'nom_apo' required>
+            </br>
+              <select id="genstate" class="form-control border-secondary " name = 'gen_apo'>
+                  <option value='e' disabled selected hidden> 🔽 ¿Cuál es el sexo biológico del apoderado? </option>
+                  <option value='m'>Hombre</option>
+                  <option value='f'>Mujer</option>
+              </select>
+              <br/>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <select id="genstate" class="form-control border-secondary" name = 'email_apo'>
+                      <option value=''>🔽 Elige el correo de la sala a usar</option>
+                      <option value='laboral'>Laboral</option>
+                      <option value='civil'>Civil</option>
+                      <option value='publico'>Público</option>
+                      <option value='penal'>Penal</option>
+                      <option value='economico'>Económico</option>
+                  </select>
+                  </div>
+                <input type="text" class="form-control border-secondary" placeholder="otro(escríbelo)" name = 'email_apo_otro'>
+              </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <select id="genstate" class="form-control border-secondary" name = 'id_apo' required>
+                  <option value='' disabled selected hidden>🔽 Tipo Id </option>
+                  <option value='C.C.'>C.C.</option>
+                  <option value='C.E.'>C.E.</option>
+                  <option value='T.I.'>T.I.</option>
+              </select>
+              </div>
+            <input type="text" class="form-control border-secondary" placeholder="Escribe el número de identificación  " name = 'ced_apo' required>
+          </div>
+          <input type="text" class="form-control border border-secondary " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Escribe el número del carnet de la sala" name = 'num_car'>
+          <br/>
+        </div></div>
+        <!--=================================================COLUMNA CONTRAPARTE=========================================================================-->
+        <div class="p-2 form-group col-sm "><div class="p-1 bg-light border border-dark rounded">
+          <form action="/form_poder" name="datos" id="datos" method="POST" class="text " >
+              <p class="text-center"><label for="exampleInputEmail1"><strong >Contraparte</strong></label></p>
+              <input type="text" class="form-control border border-secondary " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Escribe los Nombres y Apellido de la contraparte" name = 'nom_contra' required>
+              <br>
+              <input type="email" class="form-control border border-secondary" placeholder="Escribe el correo electrónico (Opcional)" name = 'email_contra'>
+              <label for="genstate"></label><br/>
+              <select id="genstate" class="form-control border-secondary " name = 'gen_contra'>
+                  <option value='e' disabled selected hidden> 🔽 ¿Cuál es el sexo biológico de la contraparte?</option>
+                  <option value='m'>Hombre</option>
+                  <option value='f'>Mujer</option>
+              </select>
+              <br/>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <select id="genstate" class="form-control border-secondary" name = 'id_contra' required>
+                      <option value=''disabled selected hidden>🔽 Tipo Id</option>
+                      <option value='C.C.'>C.C.</option>
+                      <option value='C.E.'>C.E.</option>
+                      <option value='T.I.'>T.I.</option>
+                  </select>
+                  </div>
+                <input type="text" class="form-control border-secondary" placeholder="Escribe el número de identificación " name = 'ced_contra'required>
+
+              </div>
+              <br/>
+              <br/>
+
+        </div></div>
+        <div>
+            <br/>
+            <br/>
+        <div class="row">
+          <div class="d-grid gap-3 col-2 mx-auto">
+            <div class="form-group col-sm">
+            <button class="btn btn-success  ">Crear Poder</button>
+            </div>
+        </div>
+      <!-- Termina la row -->
+            </div></div>
+
+
+
+
+</body>
+
+ <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script> -->
+
+
+</p>
+</div>
+{%endblock%}

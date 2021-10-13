@@ -1,0 +1,177 @@
+<!--ESTA ES LA PÁGINA PRINCIPAL DEL WEBPAGE-->
+<!--ESTA ES LA PÁGINA PRINCIPAL DEL WEBPAGE-->
+<!doctype html>
+{%extends 'layout.html'%} <!--Para los cambios en el nav bar y etc-->
+{%block content%}
+<body>
+    <div class="container">
+      <h1 style="text-align: center;">Recurso de Habeas Corpus</h1>
+      <h2 style="text-align: center;">Llena todos los campos y al finalizar da clic en "Crear Habeas Corpus"</h2>
+
+    </div>
+<br/>
+<div class="container">
+  <div class="row">
+    <div class="form-group col-sm">
+      <form action="/form" name="datos" id="datos" method="POST" class="text" >
+          <label for="exampleInputEmail1"><strong>Datos solicitante</strong></label><br/>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Escribe tus Nombres y Apellidos" name = 'nom_solicitante' required>
+          <br>
+          <input type="text" class="form-control" placeholder="Escribe la ciudad donde se realiza la detención" name = 'ciudad' required>
+          <br/>
+
+          <label for="condicion">¿En qué condición actúas? (Por defecto Tercero)</label><br/>
+          <select id="condicion" class="form-control" name = 'condi_solici' >
+
+            <option value='tercero'>Tercero</option>
+            <option value='familiar'>Familiar</option>
+            <option value='apoderado'>Apoderado</option>
+            <option value='afectado'>Afectado</option>
+          </select>
+
+          <br/>
+          <input type="text" class="form-control" placeholder="Escribe tu dirección" name = direccion_solicitante required>
+          <br/>
+          <input type="email" class="form-control" placeholder="Escribe tu correo electrónico" name = email_solicitante required>
+          <br/>
+          <input type="text" class="form-control" placeholder="Escribe tu teléfono de contacto" name = num_solicitante>
+          <br/>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <select id="genstate" class="form-control" name = 'id_solicitante'required>
+                  <option value=''>Tipo de ID...</option>
+                  <option value='C.C.'>C.C.</option>
+                  <option value='C.E.'>C.E.</option>
+                  <option value='T.I.'>T.I.</option>
+              </select>
+              </div>
+            <input type="text" class="form-control" placeholder="Escribe tu número de identificación " name = 'ced_solicitante'required>
+          </div>
+          <br/>
+
+
+
+
+    </div>
+    <div class="form-group col-sm">
+        <label for="afectado" ><strong>Datos del afectado</strong></label><br/>
+        <input type="text" class="form-control" id="afectado" aria-describedby="emailHelp" placeholder="Escribe los Nombres y Apellidos de la persona privada de la libertad" name = nom_afectado required>
+        <br>
+        <label for="genstate">¿Cuál es el sexo biológico de la persona privada de la libertad?</label><br/>
+        <select id="genstate" class="form-control" name = 'gen_afectado'>
+            <option value='e' disabled selected hidden> Escoge una...</option>
+            <option value='m'>Hombre</option>
+            <option value='f'>Mujer</option>
+        </select>
+        <br>
+        <label for="fecha_hechos">Selecciona la fecha de los hechos lo más acertado posible</label><br/>
+        <input type="datetime-local" name='fecha_hechos' class="form-control">
+        <br>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <select id="genstate" class="form-control" name = 'id_afectado'required>
+                  <option value=''>Tipo de ID...</option>
+                  <option value='Cédula de Ciudadanía'>C.C.</option>
+                  <option value='Cédula de Extranjería'>C.E.</option>
+                  <option value='Tarjeta de Identidad'>T.I.</option>
+              </select>
+              </div>
+            <input type="text" class="form-control" placeholder="Número de identificación del afectado" name = 'ced_afectado'required>
+          </div>
+
+
+    </div>
+    <div class="form-group col-sm">
+      <label for="autoridad"><strong>Hechos</strong></label><br/>
+      <input type="text" class="form-control" id="autoridad" aria-describedby="emailHelp" placeholder="¿Cuál fue la autoridad que realizó la detención?" name = nom_autoridad required>
+      <br/>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cuantos días has estado retenido" name = num_dias required><br/>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="¿Dónde estás privado de tu libertad?" name = sitio><br/ required>
+        <label for="retenedor">Opcional: si no sabes el nombre deja en blanco</label><br/>
+        <input type="text" class="form-control" id="retenedor" aria-describedby="emailHelp" placeholder="Escribe el nombre de la persona que realizó la retención " name = sujeto_ordeno><br/>
+        <label for="retenedor">Opcional: si no sabes el cargo deja en blanco</label><br/>
+        <input type="text" class="form-control" id="cargo_retenedor" aria-describedby="emailHelp" placeholder= 'Cargo' name = 'cargo_txt'><br/>
+
+             <!-- <form name="hechos" id="hechos"> -->
+
+             <!-- </form> -->
+
+
+
+
+
+    </div><br/>
+
+
+
+
+  </div>
+   <div class="form-check">
+        <input class="form-check-input " type="checkbox" value="" id="invalidCheck2" required>
+        <label class="form-check-label " for="invalidCheck2"><p style="text-align: justify;">
+          Bajo la gravedad del juramento, manifiesto que ningún otro funcionario conoce o ha decidido sobre un Habeas Corpus donde el afectado y los hechos sean los mismos.
+        </label>
+      </div>
+  <br/>
+  <img src="{{url_for('static', filename='linea.png')}}" class="img-fluid" alt="Responsive image">
+  <div class="row">
+    <div class="form-group col-sm">
+      <div class="table-responsive">
+           <table class="table table-borderless" id="dynamic_field">
+             <colgroup>
+                <col span="1" style="width: 70%;">
+                <col span="1" style="width: 30%;">
+             </colgroup>
+             <tbody>
+               <tr>
+                    <td><button type="button" name="add" id="add" class="btn btn-success">Añadir hechos</button></td>
+                    <td><p style="text-align: justify;">Nosotros redactamos los hechos por ti, pero con este botón puedes añadir hechos adicionales personalizados</td>
+               </tr>
+             </tbody>
+
+           </table>
+      </div>
+
+    </div>
+
+  </div>
+<div class="row">
+    <div class="d-grid gap-3 col-2 mx-auto">
+      <div class="form-group col-sm">
+      <button class="btn btn-success  ">Crear Derecho de petición</button>
+      </div>
+  </div>
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script>
+       $(document).ready(function(){
+            var i=1;
+            $('#add').click(function(){
+                 i++;
+                 $('#dynamic_field').append('<tr id="row'+i+'"><td><textarea name="peticiones" form="datos" placeholder="Describe tus hechos peticiones" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            });
+            $(document).on('click', '.btn_remove', function(){
+                 var button_id = $(this).attr("id");
+                 $('#row'+button_id+'').remove();
+            });
+            $('#submit').click(function(){
+                 $.ajax({
+                      url:"name.php",
+                      method:"POST",
+                      data:$('#add_name').serialize(),
+                      success:function(data)
+                      {
+                           alert(data);
+                           $('#add_name')[0].reset();
+                      }
+                 });
+            });
+       });
+       </script>
+
+      {%endblock%}
+
+
+ </html>
