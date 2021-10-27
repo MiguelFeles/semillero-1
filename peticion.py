@@ -1,8 +1,20 @@
 from flask import Flask, render_template,  request, make_response, send_file, send_from_directory, abort
 from fpdf import FPDF, HTMLMixin #para el pdf
 from datetime import date
+from fpdf import FPDF, HTMLMixin
 
 def generadorPeticion():
+
+    modHTML = open("./templates/form_peticion.html","w")
+    modHTML.write(
+    """<!doctype html>
+{%extends 'layout.html'%} <!--Para los cambios en el nav bar y etc-->
+{%block content%}
+
+<html>
+<body>
+    <h2>Si todo está en orden, descarga <a href="{{url_for( 'download_file',pdf_name='peticion_'+nom_peticionario[:4]+ced_peticionario[:-3]+'.pdf' ) }}">aquí</a> tu Poder en PDF</h2>""")
+    modHTML.close()
 
     peticionAdd = request.form.get('peticiones')
   
@@ -34,52 +46,68 @@ def generadorPeticion():
 
     
 
-    derechoPeticion = f"""{ciudad_peticion}{fecha_peticion}
+    derechoPeticion = f"""{ciudad_peticion}  {fecha_peticion}<br> 
+<br>
+Señores.<br>
+{dirigido}<br>
+{direccion_peticionado}<br>
+{email_peticionado}<br>
+<br>
+Referencia: Derecho de Petición de {nom_peticionario} a {dirigido} para {asunto_peticion}<br>
+<br>
+{nom_peticionario}, identificad{gen_peticionario} con {id_peticionario} número {ced_peticionario} de {id_expedicion}, en <br>calidad de {id_calidad}; de conformidad con el artículo 23 de la Constitución Política de Colombia de 1991, y del <br>título segundo de la parte primera del Código de Procedimiento Administrativo y de lo Contencioso Administrativo (Ley 1437 de 2011);<br> interpongo el siguiente Derecho de Petición basado en los siguientes:<br>
+<br>
 
-Señores. 
-{dirigido}
-{direccion_peticionado}
-{email_peticionado}
+I) Hechos.<br>
+<br>
+{hechos_peticion}<br>
+<br>
 
-Referencia: Derecho de Petición de {nom_peticionario} a {dirigido} para {asunto_peticion}
+II) Petición.<br>
 
-{nom_peticionario}, identificad{gen_peticionario} con {id_peticionario} número {ced_peticionario} de {id_expedicion}, en calidad de {id_calidad}; de conformidad con el artículo 23 de la Constitución Política de Colombia de 1991, y del título segundo de la parte primera del Código de Procedimiento Administrativo y de lo Contencioso Administrativo (Ley 1437 de 2011); interpongo el siguiente Derecho de Petición basado en los siguientes:
+En mérito de lo expuesto, se solicita a {dirigido} que:<br>
+Petición <br>
+{peticionAdd}<br>
+<br>
+III) Notificaciones.<br>
+<br>
+Se podrá notificar en cualquiera de las siguientes direcciones.<br>
+<br>
+{direccion_peticionario}<br>
+<br>
+{email_peticionario}<br>
+<br>
+<br>
+IV) Firma.<br>
+<br>
+El presente documento se suscribe de conformidad con el artículo 7 de la Ley 527 de 1999, y con la presunción contemplada <br>en el artículo 244 de la Ley 1564 de 2012 (Código General del Proceso).<br>
 
+<br>
 
-I) Hechos.
+Sin otro particular, <br>
 
-{hechos_peticion}
-
-
-II) Petición.
-
-En mérito de lo expuesto, se solicita a {dirigido} que:
-Petición 
-{peticionAdd}
-
-III) Notificaciones.
-
-Se podrá notificar en cualquiera de las siguientes direcciones.
-
-{direccion_peticionario}
-
-{email_peticionario}
-
-
-IV) Firma.
-
-El presente documento se suscribe de conformidad con el artículo 7 de la Ley 527 de 1999, y con la presunción contemplada en el artículo 244 de la Ley 1564 de 2012 (Código General del Proceso).
-
-
-
-Sin otro particular,
-
-
-
-{nom_peticionario}
+{nom_peticionario}<br>
 {id_peticionario} número {ced_peticionario}"""
 
+
+
+    class MyFPDF(FPDF, HTMLMixin):
+        pass
+
+    pdf = MyFPDF()
+    pdf.set_margins(left= 15.0, top=12.5, right=15.0)
+    pdf.add_page()
+    pdf.write_html(derechoPeticion)
+    pdf.output('peticion_'+nom_peticionario[:4]+ced_peticionario[:-3]+'.pdf', 'F')
+
     
-    print("llegué hasta acá")
-    return(derechoPeticion)
+    modHTML = open("./templates/form_peticion.html","a")
+    modHTML.write (derechoPeticion)
+    modHTML.write("""</body>
+    </html>
+
+    {%endblock%}""")
+    modHTML.close()
+
+    return(nom_peticionario, ced_peticionario, derechoPeticion)
 
